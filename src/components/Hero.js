@@ -47,7 +47,7 @@ const HeroTitle = styled.h2`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.mainBlack};
   visibility: hidden;
-
+  opacity: 0;
   @media (max-width: 1080px) {
     display: none;
   }
@@ -59,6 +59,7 @@ const HeroFullTitle = styled.h2`
   color: ${({ theme }) => theme.colors.mainBlack};
   display: none;
   visibility: hidden;
+  opacity: 0;
 
   @media (max-width: 1080px) {
     display: block;
@@ -68,9 +69,12 @@ const HeroFullTitle = styled.h2`
 const SVGContainer = styled.div`
   margin-left: 20%;
   max-width: 750px;
+
   & svg {
     width: 100%;
     height: 100%;
+    visibility: hidden;
+    opacity: 0;
   }
 
   @media (max-width: 1080px) {
@@ -89,6 +93,7 @@ const HeroText = styled.span`
   font-size: 1.4rem;
   margin-bottom: 35px;
   visibility: hidden;
+  opacity: 0;
   @media (max-width: 1080px) {
     margin-top: 10px;
   }
