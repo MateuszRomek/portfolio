@@ -187,10 +187,17 @@ const Hero = () => {
       </PaddingLeft>
       <SocialContainer className="social">
         <StyledIcon>
-          <GithubIcon />
+          <a target="_blank" href="https://github.com/MateuszRomek">
+            <GithubIcon />
+          </a>
         </StyledIcon>
         <StyledIcon>
-          <LinkedInIcon />
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/mateusz-romek-487ab3158/"
+          >
+            <LinkedInIcon />
+          </a>
         </StyledIcon>
       </SocialContainer>
     </HeroContainer>

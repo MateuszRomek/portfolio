@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
-import { SocialContainer, StyledIcon } from '../shared/index'
-import GithubIcon from '../assets/svg/github.svg'
-import LinkedinIcon from '../assets/svg/linkedin.svg'
-import scrollTo from 'gatsby-plugin-smoothscroll'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
+import { SocialContainer, StyledIcon } from '../shared/index';
+import GithubIcon from '../assets/svg/github.svg';
+import LinkedinIcon from '../assets/svg/linkedin.svg';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 const Container = styled.header`
   padding: 20px 30px;
   display: flex;
@@ -16,20 +16,20 @@ const Container = styled.header`
   @media (max-width: 1024px) {
     justify-content: space-between;
   }
-`
+`;
 
 const DesktopNav = styled.nav`
   display: none;
   @media (min-width: 1024px) {
     display: block;
   }
-`
+`;
 
 const Title = styled.h1`
   margin: 0;
   font-size: 28px;
   font-weight: 700;
-`
+`;
 
 const NavList = styled.ul`
   margin: 0;
@@ -40,12 +40,12 @@ const NavList = styled.ul`
   align-items: center;
   list-style-type: none;
   flex-direction: ${({ isMobile }) => (isMobile ? 'column' : 'row')};
-`
+`;
 
 const NavItem = styled.li`
   margin-left: ${({ isMobile }) => (isMobile ? '0' : '35px')};
   margin-bottom: ${({ isMobile }) => (isMobile ? '20px' : '0')};
-`
+`;
 
 const ScrollLink = styled.a`
   text-decoration: none;
@@ -74,7 +74,7 @@ const ScrollLink = styled.a`
   &:hover::after {
     transform: translateX(0);
   }
-`
+`;
 
 const HamburgerButton = styled.button`
   display: none;
@@ -112,7 +112,7 @@ const HamburgerButton = styled.button`
     display: block;
     align-self: flex-end;
   }
-`
+`;
 const MobileContainer = styled.div`
   display: none;
   position: fixed;
@@ -130,7 +130,7 @@ const MobileContainer = styled.div`
     display: block;
     z-index: 10;
   }
-`
+`;
 const MobileInner = styled.div`
   position: relative;
   display: flex;
@@ -138,7 +138,7 @@ const MobileInner = styled.div`
   padding: 20px 0;
   justify-content: center;
   align-items: flex-start;
-`
+`;
 
 const Header = () => {
   const {
@@ -153,17 +153,17 @@ const Header = () => {
         }
       }
     }
-  `)
+  `);
 
-  const [isHamburgerActive, setHamburgerActive] = useState(false)
+  const [isHamburgerActive, setHamburgerActive] = useState(false);
   const handleNavClick = (isMobile, id) => {
     if (isMobile) {
-      scrollTo(`#${id}`)
-      setHamburgerActive(false)
+      scrollTo(`#${id}`);
+      setHamburgerActive(false);
     } else {
-      scrollTo(`#${id}`)
+      scrollTo(`#${id}`);
     }
-  }
+  };
   return (
     <Container>
       <Title>MR</Title>
@@ -207,16 +207,23 @@ const Header = () => {
           </nav>
           <SocialContainer isMobileNav={true}>
             <StyledIcon>
-              <GithubIcon />
+              <a target="_blank" href="https://github.com/MateuszRomek">
+                <GithubIcon />
+              </a>
             </StyledIcon>
             <StyledIcon>
-              <LinkedinIcon />
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/mateusz-romek-487ab3158/"
+              >
+                <LinkedinIcon />
+              </a>
             </StyledIcon>
           </SocialContainer>
         </MobileInner>
       </MobileContainer>
     </Container>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
