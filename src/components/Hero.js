@@ -11,7 +11,7 @@ import gsap from 'gsap';
 const HeroContainer = styled.section`
   height: calc(100vh - 95px);
   position: relative;
-
+  visibility: hidden;
   @media (max-width: 320px) {
     height: 100%;
   }
@@ -46,8 +46,7 @@ const HeroTitle = styled.h2`
   margin: 0;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.mainBlack};
-  visibility: hidden;
-  opacity: 0;
+
   @media (max-width: 1080px) {
     display: none;
   }
@@ -58,8 +57,6 @@ const HeroFullTitle = styled.h2`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.mainBlack};
   display: none;
-  visibility: hidden;
-  opacity: 0;
 
   @media (max-width: 1080px) {
     display: block;
@@ -73,8 +70,6 @@ const SVGContainer = styled.div`
   & svg {
     width: 100%;
     height: 100%;
-    visibility: hidden;
-    opacity: 0;
   }
 
   @media (max-width: 1080px) {
@@ -92,8 +87,6 @@ const HeroText = styled.span`
   margin-top: 35px;
   font-size: 1.4rem;
   margin-bottom: 35px;
-  visibility: hidden;
-  opacity: 0;
   @media (max-width: 1080px) {
     margin-top: 10px;
   }
@@ -101,9 +94,11 @@ const HeroText = styled.span`
 
 const Hero = () => {
   const wrapper = useRef(null);
-  const textWrapper = useRef(null);
-  const socialAbsoulte = useRef(null);
+  const containerWrapper = useRef(null);
   useEffect(() => {
+    const container = containerWrapper.current;
+    const socialLinks = container.querySelector('.social');
+    const textContainer = container.querySelector('.textContainer').children;
     const svg = wrapper.current.children[0];
     const leaf = svg.querySelector('#leaf');
     const blocks = svg.querySelector('#blocks');
@@ -112,13 +107,15 @@ const Hero = () => {
     const table = svg.querySelector('#table');
     const pot = svg.querySelector('#pot');
     const person = svg.querySelector('#person');
-    const textContainer = textWrapper.current.children;
-    const socialLinks = socialAbsoulte.current.children;
     gsap.set([...blocks.children, person, leaf, laptop, table, pot, headset], {
       autoAlpha: 0,
     });
+    gsap.set(container, { autoAlpha: 1 });
+
     gsap.set([laptop, leaf], { transformOrigin: '50% 100%' });
-    gsap.set([...textContainer, ...socialLinks], { autoAlpha: 0 });
+    gsap.set([...textContainer, ...socialLinks.children], {
+      autoAlpha: 0,
+    });
     const tl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
     const textTl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
     textTl
@@ -137,7 +134,7 @@ const Hero = () => {
         { y: '+=50' },
         { y: '-=50', duration: 1, autoAlpha: 1 }
       )
-      .to([...socialLinks], { autoAlpha: 1, duration: 1 });
+      .to([...socialLinks.children], { autoAlpha: 1, duration: 1 });
 
     tl.fromTo(
       table,
@@ -163,10 +160,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <HeroContainer>
+    <HeroContainer ref={containerWrapper}>
       <PaddingLeft>
         <HeroInner>
-          <TextContainer ref={textWrapper}>
+          <TextContainer className="textContainer">
             <HeroFullTitle>Mateusz Romek</HeroFullTitle>
             <HeroTitle>Mateusz</HeroTitle>
             <HeroTitle>Romek</HeroTitle>
@@ -186,7 +183,7 @@ const Hero = () => {
           </SVGContainer>
         </HeroInner>
       </PaddingLeft>
-      <SocialContainer ref={socialAbsoulte}>
+      <SocialContainer className="social">
         <StyledIcon>
           <GithubIcon />
         </StyledIcon>

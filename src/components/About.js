@@ -1,13 +1,13 @@
-import React from 'react'
-import styled from 'styled-components'
-import { SectionTitle, PaddingLeft } from '../shared/index'
-import { graphql, useStaticQuery } from 'gatsby'
-import Img from 'gatsby-image'
-import { useRef } from 'react'
-import { useEffect } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import Technologies from './Technologies'
+import React from 'react';
+import styled from 'styled-components';
+import { SectionTitle, PaddingLeft } from '../shared/index';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
+import { useRef } from 'react';
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import Technologies from './Technologies';
 const AboutSection = styled.section`
   max-width: 1920px;
   margin: 0 auto;
@@ -15,7 +15,7 @@ const AboutSection = styled.section`
   @media (max-width: 900px) {
     padding: 0 25px;
   }
-`
+`;
 const AboutInner = styled.div`
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@ const AboutInner = styled.div`
     align-items: center;
     padding: 20px 10px;
   }
-`
+`;
 
 const TextContainer = styled.div`
   max-width: 385px;
@@ -46,18 +46,18 @@ const TextContainer = styled.div`
   @media (max-width: 800px) {
     margin-left: 0;
   }
-`
+`;
 const AboutParagraph = styled.p`
   font-size: 18px;
   margin-top: 8px;
   font-weight: 400;
   position: relative;
-`
+`;
 
 const SmallTitle = styled.h3`
   margin: 5px 0;
   font-size: 24px;
-`
+`;
 
 const ImageContainer = styled.div`
   width: 350px;
@@ -65,7 +65,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-`
+`;
 
 const FlexContinaer = styled.div`
   width: 100%;
@@ -91,7 +91,7 @@ const FlexContinaer = styled.div`
     justify-content: flex-start;
     padding-right: 0;
   }
-`
+`;
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -104,20 +104,20 @@ const About = () => {
         }
       }
     }
-  `)
-  const aboutWrapper = useRef(null)
+  `);
+  const aboutWrapper = useRef(null);
 
   useEffect(() => {
-    const wrapper = aboutWrapper.current
-    const title = wrapper.querySelector('.aboutTitle')
-    const img = wrapper.querySelector('.imgContainer')
-    const textContainer = wrapper.querySelector('.textContainer')
-    const technologiesTitle = wrapper.querySelector('.technologiesTitle')
-    const technologiesList = wrapper.querySelector('.technologiesList')
+    const wrapper = aboutWrapper.current;
+    const title = wrapper.querySelector('.aboutTitle');
+    const img = wrapper.querySelector('.imgContainer');
+    const textContainer = wrapper.querySelector('.textContainer');
+    const technologiesTitle = wrapper.querySelector('.technologiesTitle');
+    const technologiesList = wrapper.querySelector('.technologiesList');
     const technologiesSecondTitle = wrapper.querySelector(
       '.technologiesSecondTitle'
-    )
-    gsap.registerPlugin(ScrollTrigger)
+    );
+    gsap.registerPlugin(ScrollTrigger);
     gsap.set(
       [
         title,
@@ -130,25 +130,31 @@ const About = () => {
       {
         autoAlpha: 0,
       }
-    )
+    );
     const titleTl = gsap.timeline({
       defaults: { ease: 'power3.inOut' },
-      scrollTrigger: { trigger: '.aboutTitle', start: 'top 50%' },
-    })
+      scrollTrigger: {
+        trigger: '.aboutTitle',
+        start: 'top 50%',
+      },
+    });
     const aboutTl = gsap.timeline({
       defaults: { ease: 'power3.inOut' },
-      scrollTrigger: { trigger: '.textContainer', start: 'top: 60%' },
-    })
+      scrollTrigger: {
+        trigger: '.aboutTitle',
+        start: 'top 50%',
+      },
+    });
     const technologiesTl = gsap.timeline({
       defaults: { ease: 'power3.inOut' },
       scrollTrigger: { trigger: '.technologiesTitle', start: 'top: 70%' },
-    })
+    });
 
     titleTl.fromTo(
       title,
       { x: '-=50' },
       { x: '+=50', autoAlpha: 1, duration: 1 }
-    )
+    );
 
     aboutTl
       .fromTo(img, { x: '-=150' }, { duration: 1, x: '+=150', autoAlpha: 1 })
@@ -157,7 +163,7 @@ const About = () => {
         { x: '+=150' },
         { x: '-=150', duration: 1, stagger: 0.2, autoAlpha: 1 },
         '-=1'
-      )
+      );
     technologiesTl
       .fromTo(
         technologiesTitle,
@@ -173,8 +179,8 @@ const About = () => {
         technologiesSecondTitle,
         { x: '+=50' },
         { x: '-=50', duration: 1, autoAlpha: 1 }
-      )
-  }, [])
+      );
+  }, []);
 
   return (
     <AboutSection id="about" ref={aboutWrapper}>
@@ -217,7 +223,7 @@ const About = () => {
         </SmallTitle>
       </FlexContinaer>
     </AboutSection>
-  )
-}
+  );
+};
 
-export default About
+export default About;

@@ -13,8 +13,6 @@ const ColoredButton = styled.button`
   border-radius: 8px;
   font-size: 18px;
   transition: transform 0.3s ease-in-out;
-  visibility: hidden;
-  opacity: 0;
   &:hover {
     cursor: pointer;
     transform: scale(1.1);
