@@ -22,6 +22,7 @@ const AboutInner = styled.div`
   justify-content: center;
   padding: 0 30px;
   margin-bottom: 50px;
+  overflow: hidden;
   @media (max-width: 800px) {
     flex-direction: column-reverse;
     align-items: center;
