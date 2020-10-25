@@ -44,11 +44,12 @@ const FormInput = styled.input`
 
 const FormTextArea = styled.textarea`
   font-size: 16px;
-  padding: 5px 0;
+  padding: 5px 10px;
   color: inherit;
   resize: none;
   width: 100%;
   min-height: 150px;
+  font-family: inherit;
 `;
 
 const FormLabel = styled.label`
@@ -59,12 +60,15 @@ const FormLabel = styled.label`
   left: 20px;
   pointer-events: none;
   transition: transform 0.2s;
-  ${FormInput}:focus ~ & {
+  ${FormInput}:focus ~ &,
+  ${FormInput}:not(:placeholder-shown) ~ & {
     font-size: 14px;
     transform: translate(-20px, -25px);
     color: ${({ theme }) => theme.colors.buttonBg};
   }
-  ${FormTextArea}:focus ~ & {
+
+  ${FormTextArea}:focus ~ &,
+  ${FormTextArea}:not(:placeholder-shown) ~ & {
     font-size: 14px;
     transform: translate(-20px, -25px);
     color: ${({ theme }) => theme.colors.buttonBg};
@@ -172,17 +176,23 @@ const Contact = () => {
 
           <FormRow>
             <InputContainer>
-              <FormInput type="text" id="name" autoComplete="none" />
+              <FormInput
+                type="text"
+                id="name"
+                autoComplete="none"
+                name="name"
+                placeholder=" "
+              />
               <FormLabel htmlFor="name">Name</FormLabel>
             </InputContainer>
             <InputContainer isMargin={true}>
-              <FormInput type="email" id="email" />
+              <FormInput placeholder=" " name="email" type="email" id="email" />
               <FormLabel htmlFor="email">Email</FormLabel>
             </InputContainer>
           </FormRow>
           <FormRow>
             <InputContainer isSolo={true}>
-              <FormTextArea id="message" />
+              <FormTextArea placeholder=" " name="message" id="message" />
               <FormLabel htmlFor="message">Message</FormLabel>
             </InputContainer>
           </FormRow>
