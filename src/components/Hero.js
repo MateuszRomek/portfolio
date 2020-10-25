@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react'
-import styled from 'styled-components'
-import { PaddingLeft } from '../shared/PaddingLeft'
-import Coding from '../assets/svg/coding.svg'
-import Button from './Button'
-import GithubIcon from '../assets/svg/github.svg'
-import LinkedInIcon from '../assets/svg/linkedin.svg'
-import { SocialContainer, StyledIcon } from '../shared/index'
-import scrollTo from 'gatsby-plugin-smoothscroll'
-import gsap from 'gsap'
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { PaddingLeft } from '../shared/PaddingLeft';
+import Coding from '../assets/svg/coding.svg';
+import Button from './Button';
+import GithubIcon from '../assets/svg/github.svg';
+import LinkedInIcon from '../assets/svg/linkedin.svg';
+import { SocialContainer, StyledIcon } from '../shared/index';
+import scrollTo from 'gatsby-plugin-smoothscroll';
+import gsap from 'gsap';
 const HeroContainer = styled.section`
   height: calc(100vh - 95px);
   position: relative;
@@ -15,7 +15,7 @@ const HeroContainer = styled.section`
   @media (max-width: 320px) {
     height: 100%;
   }
-`
+`;
 const HeroInner = styled.div`
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@ const HeroInner = styled.div`
     justify-content: flex-end;
     padding: 20px 0;
   }
-`
+`;
 const TextContainer = styled.div`
   display: flex;
   align-self: flex-start;
@@ -40,28 +40,30 @@ const TextContainer = styled.div`
     margin-top: 50px;
     align-self: center;
   }
-`
+`;
 const HeroTitle = styled.h2`
   font-size: 46px;
   margin: 0;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.mainBlack};
+  visibility: hidden;
 
   @media (max-width: 1080px) {
     display: none;
   }
-`
+`;
 const HeroFullTitle = styled.h2`
   font-size: 2.6rem;
   margin: 7px 0;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.mainBlack};
   display: none;
+  visibility: hidden;
 
   @media (max-width: 1080px) {
     display: block;
   }
-`
+`;
 
 const SVGContainer = styled.div`
   margin-left: 20%;
@@ -79,40 +81,41 @@ const SVGContainer = styled.div`
   @media (max-width: 500px) {
     width: 350px;
   }
-`
+`;
 
 const HeroText = styled.span`
   display: inline-block;
   margin-top: 35px;
   font-size: 1.4rem;
   margin-bottom: 35px;
+  visibility: hidden;
   @media (max-width: 1080px) {
     margin-top: 10px;
   }
-`
+`;
 
 const Hero = () => {
-  const wrapper = useRef(null)
-  const textWrapper = useRef(null)
-  const socialAbsoulte = useRef(null)
+  const wrapper = useRef(null);
+  const textWrapper = useRef(null);
+  const socialAbsoulte = useRef(null);
   useEffect(() => {
-    const svg = wrapper.current.children[0]
-    const leaf = svg.querySelector('#leaf')
-    const blocks = svg.querySelector('#blocks')
-    const laptop = svg.querySelector('#laptop')
-    const headset = svg.querySelector('#headset')
-    const table = svg.querySelector('#table')
-    const pot = svg.querySelector('#pot')
-    const person = svg.querySelector('#person')
-    const textContainer = textWrapper.current.children
-    const socialLinks = socialAbsoulte.current.children
+    const svg = wrapper.current.children[0];
+    const leaf = svg.querySelector('#leaf');
+    const blocks = svg.querySelector('#blocks');
+    const laptop = svg.querySelector('#laptop');
+    const headset = svg.querySelector('#headset');
+    const table = svg.querySelector('#table');
+    const pot = svg.querySelector('#pot');
+    const person = svg.querySelector('#person');
+    const textContainer = textWrapper.current.children;
+    const socialLinks = socialAbsoulte.current.children;
     gsap.set([...blocks.children, person, leaf, laptop, table, pot, headset], {
       autoAlpha: 0,
-    })
-    gsap.set([laptop, leaf], { transformOrigin: '50% 100%' })
-    gsap.set([...textContainer, ...socialLinks], { autoAlpha: 0 })
-    const tl = gsap.timeline({ defaults: { ease: 'power3.inOut' } })
-    const textTl = gsap.timeline({ defaults: { ease: 'power3.inOut' } })
+    });
+    gsap.set([laptop, leaf], { transformOrigin: '50% 100%' });
+    gsap.set([...textContainer, ...socialLinks], { autoAlpha: 0 });
+    const tl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
+    const textTl = gsap.timeline({ defaults: { ease: 'power3.inOut' } });
     textTl
       .fromTo(
         [
@@ -129,7 +132,7 @@ const Hero = () => {
         { y: '+=50' },
         { y: '-=50', duration: 1, autoAlpha: 1 }
       )
-      .to([...socialLinks], { autoAlpha: 1, duration: 1 })
+      .to([...socialLinks], { autoAlpha: 1, duration: 1 });
 
     tl.fromTo(
       table,
@@ -147,8 +150,12 @@ const Hero = () => {
         '-=1'
       )
       .to(blocks, { autoAlpha: 1 })
-      .to(blocks.children, { duration: 0.7, autoAlpha: 1, stagger: 0.1 }, '-=1')
-  }, [])
+      .to(
+        blocks.children,
+        { duration: 0.7, autoAlpha: 1, stagger: 0.1 },
+        '-=1'
+      );
+  }, []);
 
   return (
     <HeroContainer>
@@ -162,7 +169,7 @@ const Hero = () => {
             <span>
               <Button
                 onClick={() => {
-                  scrollTo('#contact')
+                  scrollTo('#contact');
                 }}
               >
                 Let's chat
@@ -183,7 +190,7 @@ const Hero = () => {
         </StyledIcon>
       </SocialContainer>
     </HeroContainer>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
