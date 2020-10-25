@@ -9,6 +9,7 @@ const ProjectsContainer = styled.section`
   padding: 40px 25px;
   max-width: 1920px;
   margin: 0 auto;
+  overflow: hidden;
 `;
 const FlexContainer = styled.div`
   padding: 15px;

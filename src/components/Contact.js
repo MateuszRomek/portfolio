@@ -9,6 +9,7 @@ const ContactSection = styled.section`
   padding: 40px 25px;
   max-width: 1920px;
   margin: 0 auto;
+  overflow: hidden;
 `;
 const ContactInner = styled.div`
   display: flex;
@@ -135,7 +136,8 @@ const Contact = () => {
       .fromTo(
         form.children,
         { y: '+=20' },
-        { y: '-=20', duration: 1, autoAlpha: 1 }
+        { y: '-=20', duration: 1, autoAlpha: 1 },
+        '-=.8'
       )
       .fromTo(
         contactInformation,
@@ -145,19 +147,24 @@ const Contact = () => {
       .fromTo(
         postTwo,
         { scaleY: 0 },
-        { scaleY: 1, duration: 1, stagger: 0.2, autoAlpha: 1 }
+        { scaleY: 1, duration: 1, stagger: 0.2, autoAlpha: 1 },
+        '-=2'
       )
       .fromTo(
         [leafOne, leafTwo],
         { scaleY: 0 },
         { scaleY: 1, duration: 1, stagger: 0.2, autoAlpha: 1 },
+        '-=3'
+      )
+      .to([bodyBox, doors, postOne], { autoAlpha: 1, duration: 0.7 }, '-=1')
+      .to(
+        [envelope, topEnvelope],
+        {
+          autoAlpha: 1,
+          duration: 0.8,
+        },
         '-=1'
       )
-      .to([bodyBox, doors, postOne], { autoAlpha: 1, duration: 0.7 })
-      .to([envelope, topEnvelope], {
-        autoAlpha: 1,
-        duration: 0.8,
-      })
       .fromTo(cards, { scaleY: 0 }, { duration: 1, scaleY: 1, autoAlpha: 1 });
   }, []);
   return (

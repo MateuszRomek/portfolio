@@ -12,6 +12,8 @@ const HeroContainer = styled.section`
   height: calc(100vh - 95px);
   position: relative;
   visibility: hidden;
+  overflow: hidden;
+
   @media (max-width: 320px) {
     height: 100%;
   }

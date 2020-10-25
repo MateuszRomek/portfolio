@@ -12,6 +12,7 @@ const AboutSection = styled.section`
   max-width: 1920px;
   margin: 0 auto;
   padding: 30px 25px;
+  overflow: hidden;
   @media (max-width: 900px) {
     padding: 0 25px;
   }
