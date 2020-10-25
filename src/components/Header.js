@@ -206,18 +206,14 @@ const Header = () => {
             </NavList>
           </nav>
           <SocialContainer isMobileNav={true}>
-            <StyledIcon>
-              <a target="_blank" href="https://github.com/MateuszRomek">
-                <GithubIcon />
-              </a>
+            <StyledIcon target="_blank" href="https://github.com/MateuszRomek">
+              <GithubIcon />
             </StyledIcon>
-            <StyledIcon>
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/in/mateusz-romek-487ab3158/"
-              >
-                <LinkedinIcon />
-              </a>
+            <StyledIcon
+              target="_blank"
+              href="https://www.linkedin.com/in/mateusz-romek-487ab3158/"
+            >
+              <LinkedinIcon />
             </StyledIcon>
           </SocialContainer>
         </MobileInner>
