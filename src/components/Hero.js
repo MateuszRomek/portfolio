@@ -22,7 +22,7 @@ const HeroInner = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   max-width: 1920px;
   padding-right: 20px;
   margin: 0 auto;
