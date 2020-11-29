@@ -5,6 +5,8 @@ import Mailbox from '../assets/svg/mailbox.svg';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Button from './Button';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 const ContactSection = styled.section`
   padding: 40px 25px;
   max-width: 1920px;
@@ -30,8 +32,8 @@ const InputContainer = styled.div`
   position: relative;
   margin-left: ${({ isMargin }) => (isMargin ? '20px' : '0px')};
   width: ${({ isSolo }) => (isSolo ? '100%' : 'auto')};
-  @media (max-width: 860px) {
-    margin: 20px 15px;
+  @media (max-width: 955px) {
+    margin: 10px 15px;
     width: 100%;
   }
 `;
@@ -101,8 +103,37 @@ const ContactSpan = styled.div`
   font-size: 18px;
   padding-top: 20px;
 `;
+
+const ErrorMessage = styled.span`
+  font-size: 0.8rem;
+  padding: 5px;
+  color: red;
+  display: block;
+`;
+
+const validationSchema = yup.object({
+  email: yup
+    .string()
+    .email('Invalid email address')
+    .required('Email address is required'),
+  name: yup.string().required('This field cannot be empty'),
+  message: yup.string().required('This field cannot be empty'),
+});
+
 const Contact = () => {
   const wrapper = useRef(null);
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+    validationSchema,
+  });
+  console.log(formik.values);
+  console.log(formik.errors);
+  console.log(formik.touched);
+
   useEffect(() => {
     const container = wrapper.current;
     const title = container.querySelector('.contactTitle');
@@ -189,22 +220,53 @@ const Contact = () => {
                 autoComplete="none"
                 name="name"
                 placeholder=" "
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
               <FormLabel htmlFor="name">Name</FormLabel>
+              {formik.touched.name && formik.errors.name ? (
+                <ErrorMessage>{formik.errors.name}</ErrorMessage>
+              ) : null}
             </InputContainer>
             <InputContainer isMargin={true}>
-              <FormInput placeholder=" " name="email" type="email" id="email" />
+              <FormInput
+                placeholder=" "
+                name="email"
+                type="email"
+                id="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
               <FormLabel htmlFor="email">Email</FormLabel>
+              {formik.touched.email && formik.errors.email ? (
+                <ErrorMessage>{formik.errors.email}</ErrorMessage>
+              ) : null}
             </InputContainer>
           </FormRow>
           <FormRow>
             <InputContainer isSolo={true}>
-              <FormTextArea placeholder=" " name="message" id="message" />
+              <FormTextArea
+                placeholder=" "
+                name="message"
+                id="message"
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
               <FormLabel htmlFor="message">Message</FormLabel>
+              {formik.touched.message && formik.errors.message ? (
+                <ErrorMessage>{formik.errors.message}</ErrorMessage>
+              ) : null}
             </InputContainer>
           </FormRow>
           <InputContainer>
-            <Button type="submit">Send</Button>
+            {formik.values.name &&
+            formik.values.email &&
+            formik.values.message ? (
+              <Button type="submit">Send</Button>
+            ) : null}
           </InputContainer>
         </Form>
         <SvgContianer className="mailboxContainer">

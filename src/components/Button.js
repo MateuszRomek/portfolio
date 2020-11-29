@@ -12,10 +12,10 @@ const ColoredButton = styled.button`
   background-color: ${({ theme }) => theme.colors.buttonBg};
   border-radius: 8px;
   font-size: 18px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s;
   &:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 const Button = ({ children, ...rest }) => {
